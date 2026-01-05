@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沖繩美食推薦 - 舌尖上的海島</title>
+    <style>
+        :root {
+            --okinawa-blue: #00BFFF;
+            --coral-orange: #FF7F50; /* 溫暖的美食色系 */
+            --dark-blue: #0077be;
+        }
+
+        body {
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            margin: 0;
+            background-color: #fffaf0; /* 暖色調背景，增加食慾 */
+            color: #333;
+            
+        }
+
+        
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .back-home {
+            position: absolute; top: 20px; left: 20px;
+            color: white; text-decoration: none;
+            background: rgba(0,0,0,0.5); padding: 8px 15px;
+            border-radius: 20px; font-size: 0.9rem; transition: 0.3s;
+        }
+        .back-home:hover { background: var(--okinawa-blue); }
+
+        .gallery {
+            max-width: 1200px; margin: -50px auto 50px;
+            padding: 0 20px; display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .food-card {
+            background: white; border-radius: 15px;
+            overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .food-card:hover { transform: translateY(-10px); }
+
+        .img-box { width: 100%; height: 200px; overflow: hidden; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .info { padding: 20px; }
+        .info h3 { margin: 0 0 10px 0; color: #d35400; }
+        .info p { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
+
+        /* 地圖連結按鈕樣式 */
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: #4285F4; /* Google 標誌藍 */
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .map-link:hover {
+            background-color: #3367d6;
+        }
+        .map-link i { margin-right: 5px; } /* 預留給圖示 */
+
+         nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+        }
+
+                /* 下拉選單容器 */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+/* 下拉選單內容 (預設隱藏) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1001;
+    top: 100%; /* 出現在導覽列下方 */
+    left: 50%;
+    transform: translateX(-50%); /* 置中對齊 */
+    overflow: hidden;
+}
+
+/* 下拉選單內的連結 */
+.dropdown-content a {
+    color: #555;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    margin: 0; /* 清除原本 nav a 的 margin */
+    font-size: 0.9rem;
+    font-weight: normal;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+/* 滑鼠移過選單選項時變色 */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: var(--okinawa-blue);
+}
+
+/* 當滑鼠移到 .dropdown 容器上時，顯示內容 */
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease; /* 加入一個淡入微動畫 */
+}
+
+/* 淡入動畫定義 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* 修正導覽列內部對齊 */
+nav {
+    display: flex;
+    align-items: center; /* 確保文字與下拉選單對齊 */
+}
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">首頁</a>
+        <div class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">沖繩 Okinawa ▾</a>
+            <div class="dropdown-content">
+                <a href="okinawa-spots.html">景點介紹</a>
+                <a href="okinawa-food.html">美食推薦</a>
+                <a href="okinawa-transport.html">交通資訊</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">東京 Tokyo ▾</a>
+            <div class="dropdown-content">
+                <a href="tokyo-spots.html">景點介紹</a>
+                <a href="tokyo-food.html">美食推薦</a>
+                <a href="tokyo-transport.html">交通資訊</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <a href="index.html" class="back-home">← 返回首頁</a>
+        <h1>沖繩必吃美食</h1>
+        <p>從傳統阿古豬到鮮美海鮮，滿足你的味蕾</p>
+    </header>
+
+    <div class="gallery">
+        <div class="food-card">
+            <div class="img-box">
+                <img src="images/沖繩麵.jpg" alt="沖繩麵">
+            </div>
+            <div class="info">
+                <h3>首里蕎麥麵 (Shuri Soba)</h3>
+                <p>沖繩最具代表性的排隊名店，手工麵條紮實有勁，湯頭清甜。</p>
+                <a href="https://maps.app.goo.gl/VJkxhbsTdyzh3ZgV9" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <div class="img-box">
+                <img src="images/阿古豬火鍋.jpg" alt="阿古豬火鍋">
+            </div>
+            <div class="info">
+                <h3>百年古家 大家 阿古豬 (Ufuya)</h3>
+                <p>在百年古宅內品嚐夢幻「阿古豬」涮涮鍋，氛圍感十足。</p>
+                <a href="https://maps.app.goo.gl/etb14V7vdSgYB6cm6" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <div class="img-box">
+                <img src="images/塔可飯.jpg" alt="塔可飯">
+            </div>
+            <div class="info">
+                <h3>Taco Rice Cafe Kijimuna</h3>
+                <p>沖繩特色美食「塔可飯」，滿滿起司與生菜的清爽口感。</p>
+                <a href="https://maps.app.goo.gl/9svrCYi44Bnum8BK8" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <div class="img-box">
+                <img src="images/雪鹽冰淇淋.jpg" alt="雪鹽冰淇淋">
+            </div>
+            <div class="info">
+                <h3>雪塩国際通本店</h3>
+                <p>鹹甜交織的美味冰淇淋，店內有幾十種風味鹽可以自助添加，還有雪鹽伴手禮可以選購。</p>
+                <a href="https://maps.app.goo.gl/tM5poYak6kGAeQ726" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <div class="img-box">
+                <img src="images/通堂拉麵.jpg" alt="通堂拉麵">
+            </div>
+            <div class="info">
+                <h3>通堂拉麵</h3>
+                <p>「男人麵」與「女人麵」，你選哪一個。</p>
+                <a href="https://maps.app.goo.gl/F3vqLmJ2Nkcnwrdg7" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <div class="img-box">
+                <img src="images/牛排.jpg" alt="傑克牛排">
+            </div>
+            <div class="info">
+                <h3>傑克牛排</h3>
+                <p>將美式與日式文化結合的牛排店</p>
+                <a href="https://maps.app.goo.gl/7GtkVdw6cQ1Q6biK6" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <div class="img-box">
+                <img src="images/飯糰.jpg" alt="飯糰">
+            </div>
+            <div class="info">
+                <h3>ポーたま 牧志市場店</h3>
+                <p>現點現做的飯糰，餡料扎實，號稱沖繩風便當。</p>
+                <a href="https://maps.app.goo.gl/pjVa9DGsf2rWTEJr9" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <div class="img-box">
+                <img src="images/海人食堂.jpg" alt="海人食堂">
+            </div>
+            <div class="info">
+                <h3>海人食堂</h3>
+                <p>海鮮控必來!不論是丼飯、生魚片、魚卵、章魚、特色墨魚咖哩，應有盡有。</p>
+                <a href="https://maps.app.goo.gl/F7dh3BGuCWfL16y26" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <div class="img-box">
+                <img src="images/蝦蝦飯.jpg" alt="古宇利蝦蝦飯">
+            </div>
+            <div class="info">
+                <h3>古宇利蝦蝦飯</h3>
+                <p>大量肥美蝦仁，絕對是蝦控首選。</p>
+                <a href="https://maps.app.goo.gl/ycAcowFTEMjESkfY7" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+    </div>
+
+    
+    </div>
+
+    <footer>
+        <p>&copy; 日本自由行規劃</p>
+    </footer>
+
+</body>
+</html>

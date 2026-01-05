@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本沖繩東京自由行玩法 [cite: 2]</title>
+    <style>
+        /* UI 設定：清新、極簡風格 [cite: 23] */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+
+        /* UX：導覽列固定在頁面上方  */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+        }
+
+        /* 頁面主容器 */
+        .container {
+            padding-top: 80px; /* 避開固定導覽列 */
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        header {
+            padding: 50px 20px;
+        }
+
+        /* UI：卡片式架構 (Card Layout)  */
+        .selection-area {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            width: 45%;
+            min-width: 300px;
+            border-radius: 15px; /* 按鈕/卡片圓角設計  */
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            background: white;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        /* 沖繩配色：天空藍色系  */
+        .okinawa-theme {
+            background: linear-gradient(135deg, #87CEEB, #00BFFF);
+            color: white;
+        }
+
+        /* 東京配色：金黃、霓虹紫色系  */
+        .tokyo-theme {
+            background: linear-gradient(135deg, #FFD700, #9370DB);
+            color: white;
+        }
+
+        /* 按鈕設計與 Hover 效果  */
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            margin-top: 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: rgba(255, 255, 255, 0.3); /* 初始透明度低  */
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.6); /* 鼠標移到後透明度增加  */
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+        /* 下拉選單容器 */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+/* 下拉選單內容 (預設隱藏) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1001;
+    top: 100%; /* 出現在導覽列下方 */
+    left: 50%;
+    transform: translateX(-50%); /* 置中對齊 */
+    overflow: hidden;
+}
+
+/* 下拉選單內的連結 */
+.dropdown-content a {
+    color: #555;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    margin: 0; /* 清除原本 nav a 的 margin */
+    font-size: 0.9rem;
+    font-weight: normal;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+/* 滑鼠移過選單選項時變色 */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: var(--okinawa-blue);
+}
+
+/* 當滑鼠移到 .dropdown 容器上時，顯示內容 */
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease; /* 加入一個淡入微動畫 */
+}
+
+/* 淡入動畫定義 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* 修正導覽列內部對齊 */
+nav {
+    display: flex;
+    align-items: center; /* 確保文字與下拉選單對齊 */
+}
+
+/* 機場比較區塊樣式 */
+.airport-comparison {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+.comparison-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.airport-card {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+    text-align: left;
+    border: 1px solid #eee;
+}
+
+.airport-header {
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* 成田用藍色調，羽田用深色調做區隔 */
+.narita .airport-header { background-color: #0077be; }
+.haneda .airport-header { background-color: #333; }
+
+.airport-body {
+    padding: 20px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #eee;
+}
+
+.stat-item .label {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.stat-item .value {
+    font-weight: bold;
+    color: #333;
+}
+
+.airport-desc {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 15px;
+    line-height: 1.5;
+    background: #fdfdfd;
+    padding: 10px;
+    border-radius: 8px;
+}
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#">首頁 Home </a>
+       <div class="dropdown">
+        <a href="#okinawa" class="dropbtn">沖繩 Okinawa ▾</a>
+        <div class="dropdown-content">
+            <a href="okinawa-spots.html">景點介紹</a>
+            <a href="okinawa-food.html">美食推薦</a>
+            <a href="okinawa-transport.html">交通資訊</a>
+            </div>
+        </div>
+    </div>
+       <div class="dropdown">
+        <a href="#tokyo" class="dropbtn">東京 Tokyo ▾</a>
+        <div class="dropdown-content">
+            <a href="tokyo-spots.html">景點介紹</a>
+            <a href="tokyo-food.html">美食推薦</a>
+            <a href="tokyo-transport.html">交通資訊</a>
+        </div>
+    </div>
+    </nav>
+
+    <div class="container">
+        <header id="about">
+            <h1>日本自由行推薦</h1>
+            <p>提供東京與沖繩的行程推薦 </p>
+        </header>
+
+        <section class="selection-area">
+            <div class="card okinawa-theme" id="okinawa">
+                <img src="images/首頁沖繩圖.jpg" alt="沖繩風光">
+                <div class="card-content">
+                    <h2>沖繩 Okinawa </h2>
+                    <p>感受晴朗天氣與海洋風光 </p>
+                    <a href="okinawa-spots.html" class="btn">景點介紹</a>
+                    <a href="okinawa-food.html" class="btn">美食推薦</a>
+                    <a href="okinawa-transport.html" class="btn">交通資訊</a>
+                </div>
+            </div>
+
+            <div class="card tokyo-theme" id="tokyo">
+                <img src="images/首頁東京.jpg" alt="東京都市">
+                <div class="card-content">
+                    <h2>東京 Tokyo </h2>
+                    <p>體驗都市潮流與霓虹生活 </p>
+                    <a href="tokyo-spots.html" class="btn">景點介紹</a>
+                    <a href="tokyo-food.html" class="btn">美食推薦</a>
+                    <a href="tokyo-transport.html" class="btn">交通資訊</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="airport-comparison">
+    <h2 style="margin-bottom: 30px; color: #333;">✈️ 東京兩大機場快速比較</h2>
+    
+    <div class="comparison-container">
+        <div class="airport-card narita">
+            <div class="airport-header">成田機場 (NRT)</div>
+            <div class="airport-body">
+                <div class="stat-item">
+                    <span class="label">地理位置</span>
+                    <span class="value">千葉縣 (較遠)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">進市區時間</span>
+                    <span class="value">約 40 - 60 分鐘</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">平均車資</span>
+                    <span class="value">約 ¥2,500 - ¥3,200</span>
+                </div>
+                <p class="airport-desc">大部分國際廉價航空 (LCC) 停靠站，航線多、免稅店極好逛。</p>
+            </div>
+        </div>
+
+        <div class="airport-card haneda">
+            <div class="airport-header">羽田機場 (HND)</div>
+            <div class="airport-body">
+                <div class="stat-item">
+                    <span class="label">地理位置</span>
+                    <span class="value">東京都內 (極近)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">進市區時間</span>
+                    <span class="value">約 15 - 30 分鐘</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">平均車資</span>
+                    <span class="value">約 ¥500 - ¥800</span>
+                </div>
+                <p class="airport-desc">離市中心極近，省時省錢，適合商務旅客或想爭取旅遊時間的人。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <footer>
+            <p>日本自由行規劃</p>
+            <a href="#" style="text-decoration: none; color: #00BFFF;">↑ 回首頁</a>
+        </footer>
+    </div>
+
+</body>
+</html>

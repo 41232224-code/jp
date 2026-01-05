@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東京景點介紹 - 都市潮流之旅</title>
+    <style>
+        :root {
+            --okinawa-blue: #00BFFF;
+            --dark-blue: #0077be;
+        }
+
+        body {
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            margin: 0;
+            background-color: #f4f9fc;
+            color: #333;
+        }
+
+        /* 頁首設計 */
+        header {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('images/東京首頁.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .back-home:hover { background: var(--okinawa-blue); }
+
+        /* 景點網格系統 */
+        .gallery {
+            max-width: 1200px;
+            margin: -50px auto 50px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .spot-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .spot-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .img-box {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .spot-card:hover .img-box img {
+            transform: scale(1.1);
+        }
+
+        .info {
+            padding: 20px;
+        }
+
+        .info h3 {
+            margin: 0 0 10px 0;
+            color: var(--dark-blue);
+        }
+
+        .info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e1f5fe;
+            color: var(--dark-blue);
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: #4285F4; /* Google 標誌藍 */
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .map-link:hover {
+            background-color: #3367d6;
+        }
+        .map-link i { margin-right: 5px; } /* 預留給圖示 */
+
+         nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+        }
+
+                /* 下拉選單容器 */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+/* 下拉選單內容 (預設隱藏) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1001;
+    top: 100%; /* 出現在導覽列下方 */
+    left: 50%;
+    transform: translateX(-50%); /* 置中對齊 */
+    overflow: hidden;
+}
+
+/* 下拉選單內的連結 */
+.dropdown-content a {
+    color: #555;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    margin: 0; /* 清除原本 nav a 的 margin */
+    font-size: 0.9rem;
+    font-weight: normal;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+/* 滑鼠移過選單選項時變色 */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: var(--okinawa-blue);
+}
+
+/* 當滑鼠移到 .dropdown 容器上時，顯示內容 */
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease; /* 加入一個淡入微動畫 */
+}
+
+/* 淡入動畫定義 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* 修正導覽列內部對齊 */
+nav {
+    display: flex;
+    align-items: center; /* 確保文字與下拉選單對齊 */
+}
+
+    </style>
+</head>
+<body>
+
+<nav>
+        <a href="index.html">首頁</a>
+        <div class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">沖繩 Okinawa ▾</a>
+            <div class="dropdown-content">
+                <a href="okinawa-spots.html">景點介紹</a>
+                <a href="okinawa-food.html">美食推薦</a>
+                <a href="okinawa-transport.html">交通資訊</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">東京 Tokyo ▾</a>
+            <div class="dropdown-content">
+                <a href="tokyo-spots.html">景點介紹</a>
+                <a href="tokyo-food.html">美食推薦</a>
+                <a href="tokyo-transport.html">交通資訊</a>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <a href="index.html" class="back-home">← 返回首頁</a>
+        <h1>東京景點介紹</h1>
+        <p>體驗日本首都的繁華</p>
+    </header>
+
+    <div class="gallery">
+        <div class="spot-card">
+            <div class="img-box">
+                <img src="images/澀谷.jpg" alt="澀谷十字路口">
+            </div>
+            <div class="info">
+                <span class="tag">最壯觀斑馬線</span>
+                <h3>澀谷十字路口</h3>
+                <p>不論是電影、戲劇、甚至動漫都會採景的知名場景。</p>
+                <a href="https://maps.app.goo.gl/rdyjmzr4mWEFwqxd6" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="spot-card">
+            <div class="img-box">
+                <img src="images/阿美橫丁.jpg" alt="阿美橫町">
+            </div>
+            <div class="info">
+                <span class="tag">超長商店街</span>
+                <h3>阿美橫町</h3>
+                <p>長達500公尺的商店街，且禁止車輛進入，可以安心逛街。</p>
+                <a href="https://maps.app.goo.gl/qBaGEeEC3nXW9w6L9" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="spot-card">
+            <div class="img-box">
+                <img src="images/東京哈利波特.jpg" alt="東京哈利波特影城">
+            </div>
+            <div class="info">
+                <span class="tag">哈利波特迷必去</span>
+                <h3>東京哈利波特影城</h3>
+                <p>全球規模最大的哈利波特室內設施與紀念品商店。</p>
+                <a href="https://maps.app.goo.gl/6TK5pgJjHW4CtMna6" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="spot-card">
+            <div class="img-box">
+                <img src="images/淺草寺.jpg" alt="淺草寺">
+            </div>
+            <div class="info">
+                <span class="tag">必去地標</span>
+                <h3>淺草寺</h3>
+                <p>大紅燈籠「雷門」是必拍地標，旁邊還有長達250公尺的商店街可以逛</p>
+                <a href="https://maps.app.goo.gl/cRorg5JCes9YieB99" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="spot-card">
+            <div class="img-box">
+                <img src="images/晴空塔.jpg" alt="晴空塔">
+            </div>
+            <div class="info">
+                <span class="tag">天空之城</span>
+                <h3>晴空塔</h3>
+                <p>在塔內的350公尺和450公尺處分別設有「天望甲板」和「天望迴廊」兩個觀景台。</p>
+                <a href="https://maps.app.goo.gl/4ej879x3tSJWZwD26" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="spot-card">
+            <div class="img-box">
+                <img src="images/上野動物園.jpg" alt="上野動物園">
+            </div>
+            <div class="info">
+                <span class="tag">可愛小動物</span>
+                <h3>上野動物園</h3>
+                <p>保有大自然氣息的都市型動物園，擁有300種動物。</p>
+                <a href="https://maps.app.goo.gl/oyRnNrcMpXeRhJz86" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="spot-card">
+            <div class="img-box">
+                <img src="images/東京鐵塔.jpg" alt="東京鐵塔">
+            </div>
+            <div class="info">
+                <span class="tag">東京地標</span>
+                <h3>東京鐵塔</h3>
+                <p>下午時段和夜晚時段是完全不同的感受。</p>
+                <a href="https://maps.app.goo.gl/LiCB2nar27aYfgjE7" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="spot-card">
+            <div class="img-box">
+                <img src="images/竹下通.jpg" alt="竹下通">
+            </div>
+            <div class="info">
+                <span class="tag">潮流服飾</span>
+                <h3>竹下通</h3>
+                <p>很多潮流服裝、飾品，以及藥妝店的商店街。</p>
+                <a href="https://maps.app.goo.gl/woyAo4ZWfMyuBdxY6" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+
+        <div class="spot-card">
+            <div class="img-box">
+                <img src="images/墨田水族館.jpg" alt="墨田水族館">
+            </div>
+            <div class="info">
+                <span class="tag">藝術水族館</span>
+                <h3>墨田水族館</h3>
+                <p>館內是橫跨5、6樓的挑高展示空間，在這裡可以近距離觀看各種生物，也可以俯瞰觀察。</p>
+                <a href="https://maps.app.goo.gl/HBeycysNoqywR7q29" target="_blank" class="map-link">📍 在地圖中查看</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 日本自由行規劃</p>
+    </footer>
+
+</body>
+</html>
